@@ -1,0 +1,218 @@
+@use "../abstracts/index"as *;
+
+.tab-product_list {
+    display: flex;
+    gap: 48px;
+    padding: 6px 0;
+
+    &::-webkit-scrollbar {
+        height: 3px;
+        background-color: var(--Line);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--Primary);
+        border-radius: 999px;
+    }
+
+    .tf-btn-tab {
+        position: relative;
+        text-wrap: nowrap;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: var(--Secondary);
+            top: calc(100% + 2px);
+            left: 50%;
+            transform: translateX(-50%);
+            @include transition5();
+        }
+
+        &.active,
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+
+    &.style-2 {
+        gap: 64px;
+        padding: 9px 0;
+        
+
+        @include res(md) {
+            gap: 24px;
+            padding: 10px 0 18px;
+
+        }
+
+        .tf-btn-tab {
+            &::after {
+                background-color: var(--Primary);
+                top: calc(100% + 8px);
+            }
+
+
+
+            &.active,
+            &:hover {
+                color: var(--Primary);
+            }
+        }
+    }
+}
+
+.flat-animate-tab {
+    .tab-content {
+        position: relative;
+    }
+
+    .tab-pane {
+        display: block;
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        right: 0;
+        -webkit-transform: translateY(30px);
+        -ms-transform: translateY(30px);
+        transform: translateY(30px);
+        transition-timing-function: ease-in;
+        transition-duration: 0.2s;
+
+        &.active {
+            pointer-events: auto;
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+            z-index: 2;
+            -webkit-transform: none;
+            -ms-transform: none;
+            transform: none;
+            transition-timing-function: ease-out;
+            transition-duration: 0.3s;
+            transition-delay: 0.3s;
+        }
+    }
+
+    &.tab-style-1 {
+        overflow: hidden;
+
+        .tab-content {
+            margin-top: 44px;
+
+            @include res(lg) {
+                margin-top: 30px;
+
+            }
+        }
+    }
+
+    &.tab-style-2 {
+        overflow: hidden;
+        min-width: 200px;
+    }
+
+    &.tab-style-3 {
+        overflow: hidden;
+        display: flex;
+        gap: 48px;
+
+        .menu-tab {
+            min-width: 200px;
+            flex-shrink: 0;
+        }
+
+        .tab-content {
+            border: 1px solid var(--line);
+
+            .tab-pane {
+                padding: 32px;
+            }
+        }
+    }
+
+    .menu-tab-1 {
+        border-bottom: 1px solid #ebebeb;
+        display: flex;
+        align-items: center;
+        overflow: auto;
+        gap: 64px;
+        justify-content: center;
+
+        @include res(md) {
+            justify-content: start;
+            gap: 30px;
+        }
+
+        .nav-tab-item {
+            &:first-child {
+                .tab-link {
+                    padding-left: 0 !important;
+                }
+            }
+        }
+
+        .tab-link {
+            padding: 20px 0;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 28px;
+            color: #25252580;
+            display: block;
+            position: relative;
+            text-align: center;
+            white-space: nowrap;
+
+            @include res(lg) {
+                font-size: 16px;
+                line-height: 26px;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                bottom: 0px;
+                height: 1px;
+                width: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--Primary);
+                @include transition3;
+            }
+
+            &.active {
+                color: var(--Primary);
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+
+        @include res(lg) {
+            .tab-link {
+                padding: 0 12px 16px;
+            }
+        }
+    }
+
+    .menu-tab-2 {
+        overflow-x: auto;
+
+        @include res(sm) {
+            justify-content: start;
+            gap: 30px;
+        }
+
+    }
+
+
+}
